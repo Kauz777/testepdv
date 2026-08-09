@@ -1,0 +1,331 @@
+/* =========================================
+   Reset e Variáveis Globais
+========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --bg-dark: #070b14;
+    --bg-panel: rgba(15, 23, 42, 0.85);
+    --bg-card: rgba(30, 41, 59, 0.7);
+    
+    /* Cores do Tema */
+    --blue-primary: #0284c7;
+    --blue-light: #38bdf8;
+    --blue-glow: rgba(56, 189, 248, 0.5);
+    --text-light: #f8fafc;
+    
+    /* Cores dos Cards de Ação */
+    --red-error: #ef4444;
+    --red-glow: rgba(239, 68, 68, 0.4);
+    --orange-edit: #f59e0b;
+    --orange-glow: rgba(245, 158, 11, 0.4);
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at top, #101c30 0%, #070b14 80%);
+}
+
+/* =========================================
+   Hotbar (Menu)
+========================================= */
+.hotbar {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 25px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border: 1px solid transparent;
+}
+
+.menu-item:hover, .menu-item.active {
+    color: #ffffff;
+    background: rgba(2, 132, 199, 0.2);
+    border: 1px solid var(--blue-primary);
+    box-shadow: 0 0 15px var(--blue-glow);
+}
+
+/* =========================================
+   Classes Utilitárias
+========================================= */
+.hidden { display: none !important; }
+
+/* =========================================
+   Tela de PIN (Acesso Restrito)
+========================================= */
+.pin-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px; 
+}
+
+.pin-box {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(2, 132, 199, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.pin-box h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--blue-light);
+}
+
+.pin-box p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+    font-size: 0.9rem;
+}
+
+.pin-box input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--blue-primary);
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    outline: none;
+    letter-spacing: 15px;
+    transition: all 0.3s ease;
+    font-family: monospace;
+}
+
+.pin-box input:focus {
+    box-shadow: 0 0 15px var(--blue-glow);
+    border-color: var(--blue-light);
+}
+
+.error-msg {
+    color: var(--red-error) !important;
+    margin-top: 10px;
+    font-weight: 600;
+    display: none; 
+}
+
+#btn-acessar {
+    margin-top: 25px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--blue-primary), var(--blue-light));
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+}
+
+#btn-acessar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px var(--blue-glow);
+}
+
+/* =========================================
+   Tela do Estoque (Dashboard)
+========================================= */
+#estoque-content {
+    padding: 120px 5% 50px 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CARDS DE AÇÃO (Grandes no Meio - Agora com 3) */
+.action-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px; /* Aumentado para caber 3 cards bem espaçados */
+    margin-bottom: 60px;
+}
+
+.action-card {
+    flex: 1;
+    background: var(--bg-card);
+    border: 2px solid rgba(56, 189, 248, 0.2);
+    border-radius: 20px;
+    padding: 40px 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.action-card .icon {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 15px;
+    font-weight: 300;
+    color: var(--blue-light);
+}
+
+.action-card h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+}
+
+/* Efeitos Hover no Card 1: Adicionar (Azul) */
+.btn-add:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--blue-light);
+    box-shadow: 0 15px 40px var(--blue-glow);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+/* Efeitos Hover no Card 2: Editar (Laranja) */
+.btn-edit-card .icon {
+    color: var(--orange-edit);
+}
+.btn-edit-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--orange-edit);
+    box-shadow: 0 15px 40px var(--orange-glow);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+/* Efeitos Hover no Card 3: Remover (Vermelho) */
+.btn-remove .icon {
+    color: var(--red-error);
+}
+.btn-remove:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--red-error);
+    box-shadow: 0 15px 40px var(--red-glow);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+/* =========================================
+   LISTA DE PRODUTOS E PESQUISA
+========================================= */
+.table-section {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Container do título e barra de pesquisa */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-title {
+    font-size: 2rem;
+}
+
+.table-title span {
+    color: var(--blue-light);
+}
+
+/* Estilo da Barra de Pesquisa */
+.search-bar {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--blue-primary);
+    color: var(--text-light);
+    padding: 12px 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 350px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-bar::placeholder {
+    color: #64748b;
+}
+
+.search-bar:focus {
+    box-shadow: 0 0 15px var(--blue-glow);
+    border-color: var(--blue-light);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+/* Tabela Glassmorphism */
+.table-container {
+    background: var(--bg-card);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 18px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th {
+    color: var(--blue-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+tbody tr:hover {
+    background: rgba(2, 132, 199, 0.1);
+}
+
+.codigo-destaque {
+    font-family: monospace;
+    font-size: 1.1rem;
+    color: var(--blue-light);
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.qtd-destaque {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
